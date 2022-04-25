@@ -1,0 +1,102 @@
+@use "sass:color" as *;
+@use "./functions" as *;
+@use "./mixins" as *;
+@forward "./variables";
+@forward "./reset";
+@forward "./sharer";
+
+body {
+  font: 500 1rem / 1.5 "Manrope", sans-serif;
+  background: var(--off-white);
+  color: var(--dark-grey);
+}
+
+main {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  padding-block: 2rem;
+}
+
+.article {
+  width: min(calc(100vw - 5rem), 45rem);
+  display: flex;
+  box-shadow: 0 1rem 2rem 0 scale-color(c("off-white"), $lightness: -5%);
+  transition: box-shadow 0.2s ease;
+
+  @media screen and (max-width: 900px) {
+    display: block;
+    border-radius: 0.875rem;
+    overflow: hidden;
+    transform: translateZ(0);
+  }
+
+  &:hover {
+    box-shadow: 0 1rem 2rem 0 scale-color(c("off-white"), $lightness: -10%);
+  }
+
+  &__image {
+    --size: 17rem;
+    border-radius: 0.875rem 0 0 0.875rem;
+    flex: 0 0 v("size");
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    object-position: left;
+    width: v("size");
+    height: auto;
+
+    @media screen and (max-width: 900px) {
+      aspect-ratio: 16/9;
+      border-radius: 0;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__content {
+    background-color: v("white");
+    padding: 2rem;
+    border-radius: 0 0.875rem 0.875rem 0;
+    position: relative;
+
+    @media screen and (max-width: 900px) {
+      border-radius: 0;
+    }
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    line-height: 1.35;
+    font-weight: 700;
+    color: v("off-black");
+  }
+
+  &__description {
+    font-size: 0.875rem;
+    line-height: 1.45;
+    margin-block: 1rem;
+  }
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  font-size: 0.875rem;
+  margin-top: 1.5rem;
+
+  @media screen and (max-width: 900px) {
+    margin-top: 3.5rem;
+  }
+
+  &__avatar {
+    @include size(2.5rem);
+    border-radius: 2.5rem;
+    flex: 0 0 2.5rem;
+  }
+
+  &__author {
+    font-weight: 700;
+    color: v("off-black");
+  }
+}
