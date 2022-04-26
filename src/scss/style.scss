@@ -21,10 +21,12 @@ main {
 .article {
   width: min(calc(100vw - 5rem), 45rem);
   display: flex;
-  box-shadow: 0 1rem 2rem 0 scale-color(c("off-white"), $lightness: -5%);
-  transition: box-shadow 0.2s ease;
+  filter: drop-shadow(0 1rem 2rem scale-color(c("off-white"), $lightness: -5%));
+  transition: box-shadow 0.2s ease, filter 0.2s ease;
 
   @media screen and (max-width: 900px) {
+    box-shadow: 0 1rem 2rem 0 scale-color(c("off-white"), $lightness: -5%);
+    filter: none;
     display: block;
     border-radius: 0.875rem;
     overflow: hidden;
@@ -32,7 +34,14 @@ main {
   }
 
   &:hover {
-    box-shadow: 0 1rem 2rem 0 scale-color(c("off-white"), $lightness: -10%);
+    filter: drop-shadow(
+      0 1rem 2rem scale-color(c("off-white"), $lightness: -10%)
+    );
+
+    @media screen and (max-width: 900px) {
+      filter: none;
+      box-shadow: 0 1rem 2rem 0 scale-color(c("off-white"), $lightness: -10%);
+    }
   }
 
   &__image {
